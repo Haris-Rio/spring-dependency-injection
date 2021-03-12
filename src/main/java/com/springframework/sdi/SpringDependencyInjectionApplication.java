@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.springframework.sdi.controller.ConstructorInjectedController;
+import com.springframework.sdi.controller.I18nController;
 import com.springframework.sdi.controller.MyController;
 import com.springframework.sdi.controller.PropertyInjectedController;
 import com.springframework.sdi.controller.SetterInjectedController;
@@ -15,8 +16,12 @@ public class SpringDependencyInjectionApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringDependencyInjectionApplication.class, args);
 		MyController myController = (MyController) ctx.getBean("myController");
-		String greeting = myController.sayHello();
-		System.out.println(greeting);
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		System.out.println("---------- I18N ----------");
+		System.out.println(i18nController.sayHello());
+		
+		System.out.println("---------- Primary ----------");
+		System.out.println(myController.sayHello());
 		
 		System.out.println("---------- Property ----------");
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
