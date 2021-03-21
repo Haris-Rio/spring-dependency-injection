@@ -3,18 +3,26 @@ package com.springframework.sdi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.springframework.sdi.controller.ConstructorInjectedController;
 import com.springframework.sdi.controller.I18nController;
 import com.springframework.sdi.controller.MyController;
+import com.springframework.sdi.controller.PetController;
 import com.springframework.sdi.controller.PropertyInjectedController;
 import com.springframework.sdi.controller.SetterInjectedController;
 
+@ComponentScan(basePackages = {"com.springframework.sdi", "org.springframework.pets"})
 @SpringBootApplication
 public class SpringDependencyInjectionApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringDependencyInjectionApplication.class, args);
+		
+		PetController petController = ctx.getBean("petController", PetController.class);
+		System.out.println("--- The Best Pet is ---");
+		System.out.println(petController.whichPetIsTheBest());
+		
 		MyController myController = (MyController) ctx.getBean("myController");
 		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
 		System.out.println("---------- I18N ----------");
