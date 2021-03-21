@@ -12,7 +12,9 @@ import com.springframework.sdi.controller.PetController;
 import com.springframework.sdi.controller.PropertyInjectedController;
 import com.springframework.sdi.controller.SetterInjectedController;
 
-@ComponentScan(basePackages = {"com.springframework.sdi", "org.springframework.pets"})
+// Commenting component scan even though we have different root package because we removed spring component from that package and configuring that in java config file 
+// to say the factory to produce and spring.
+//@ComponentScan(basePackages = {"com.springframework.sdi", "org.springframework.pets"})
 @SpringBootApplication
 public class SpringDependencyInjectionApplication {
 
