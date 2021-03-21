@@ -11,6 +11,8 @@ import com.springframework.sdi.controller.MyController;
 import com.springframework.sdi.controller.PetController;
 import com.springframework.sdi.controller.PropertyInjectedController;
 import com.springframework.sdi.controller.SetterInjectedController;
+import com.springframework.sdi.service.PrototypeBean;
+import com.springframework.sdi.service.SingletonBean;
 
 // Commenting component scan even though we have different root package because we removed spring component from that package and configuring that in java config file 
 // to say the factory to produce and spring.
@@ -44,6 +46,17 @@ public class SpringDependencyInjectionApplication {
 		System.out.println("----------- Contructor ------------");
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println(constructorInjectedController.getGreetings());
+		
+		System.out.println("----------- Bean Scopes -----------");
+		SingletonBean singletonBean1 = ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBean1.getMyBean());
+		SingletonBean singletonBean2 = ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBean2.getMyBean());
+		
+		PrototypeBean prototypeBean1 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean1.getMyBean());
+		PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean2.getMyBean());
 		
 	}
 
