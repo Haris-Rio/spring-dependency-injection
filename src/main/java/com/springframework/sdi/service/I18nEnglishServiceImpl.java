@@ -1,15 +1,18 @@
 package com.springframework.sdi.service;
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
+import com.springframework.sdi.repositories.EnglishGreetingsRepository;
 
-@Profile({"EN","default"})
-@Service("i18nService")
 public class I18nEnglishServiceImpl implements GreetingService{
+	
+	private final EnglishGreetingsRepository englishGreetingsRepository;
+		
+	public I18nEnglishServiceImpl(EnglishGreetingsRepository englishGreetingsRepository) {
+		super();
+		this.englishGreetingsRepository = englishGreetingsRepository;
+	}
 
 	@Override
-	public String sayGreetings() {
-		
-		return "Hello World - English";
+	public String sayGreetings() {	
+		return englishGreetingsRepository.getGreeting();
 	}
 }
