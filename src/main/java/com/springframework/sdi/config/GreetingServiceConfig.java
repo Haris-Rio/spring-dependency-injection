@@ -20,7 +20,6 @@ import com.springframework.sdi.service.PrimaryGreetingServiceImpl;
 import com.springframework.sdi.service.PropertyGreetingServiceImpl;
 import com.springframework.sdi.service.SetterGreetingServiceImpl;
 
-@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
