@@ -1,7 +1,7 @@
 package com.springframework.sdi.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -20,17 +20,18 @@ import com.springframework.sdi.service.PrimaryGreetingServiceImpl;
 import com.springframework.sdi.service.PropertyGreetingServiceImpl;
 import com.springframework.sdi.service.SetterGreetingServiceImpl;
 
+@EnableConfigurationProperties(SdiConstructorConfig.class)//for constructor binding
 @ImportResource("classpath:sdi-config.xml")
 @Configuration
 @ConfigurationProperties
 public class GreetingServiceConfig {
 	
 	@Bean
-	FakeDataSource fakeDataSource(@Value("${datasource.username}") String username, @Value("${datasource.password}")String password, @Value("${datasource.jdbcurl}")String jdbcurl) {
+	FakeDataSource fakeDataSource(SdiConstructorConfig sdiConstructorConfig) {
 		FakeDataSource fakeDataSource = new FakeDataSource();
-		fakeDataSource.setUsername(username);
-		fakeDataSource.setPassword(password);
-		fakeDataSource.setJdbcurl(jdbcurl);
+		fakeDataSource.setUsername(sdiConstructorConfig.getUsername());
+		fakeDataSource.setPassword(sdiConstructorConfig.getPassword());
+		fakeDataSource.setJdbcurl(sdiConstructorConfig.getJdbcurl());
 		return fakeDataSource;
 	}
 	

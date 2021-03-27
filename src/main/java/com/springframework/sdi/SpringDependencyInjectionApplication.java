@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
+import com.springframework.sdi.config.SdiConfiguration;
+import com.springframework.sdi.config.SdiConstructorConfig;
 import com.springframework.sdi.controller.ConstructorInjectedController;
 import com.springframework.sdi.controller.I18nController;
 import com.springframework.sdi.controller.MyController;
@@ -60,10 +62,23 @@ public class SpringDependencyInjectionApplication {
 		PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(prototypeBean2.getMyBean());
 		
+		System.out.println("----------- Fake Data Source ----------");
 		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
 		System.out.println(fakeDataSource.getUsername());
 		System.out.println(fakeDataSource.getPassword());
 		System.out.println(fakeDataSource.getJdbcurl());
+		
+		System.out.println("----------- Config Property bean ----------");
+		SdiConfiguration sdiConfiguration = ctx.getBean(SdiConfiguration.class);
+		System.out.println(sdiConfiguration.getUsername());
+		System.out.println(sdiConfiguration.getPassword());
+		System.out.println(sdiConfiguration.getJdbcurl());
+		
+		System.out.println("----------- Constructor Binding ----------");
+		SdiConstructorConfig sdiConstructorConfig = ctx.getBean(SdiConstructorConfig.class);
+		System.out.println(sdiConstructorConfig.getUsername());
+		System.out.println(sdiConstructorConfig.getPassword());
+		System.out.println(sdiConstructorConfig.getJdbcurl());
 		
 	}
 
