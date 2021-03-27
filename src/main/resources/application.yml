@@ -1,7 +1,19 @@
 spring:
   profiles:
-    active: cat,EN,prod
+    active: 
+      - cat
+      - EN
+      - dev
 datasource:
   username: YMLUser
   password: YMLPassword
   jdbcurl: YMLurl
+---
+spring:
+  profiles: dev
+  
+datasource:
+  username: YMLDevUser
+  password: YMLDevPassword
+  jdbcurl: YMLDevUrl  
+  
