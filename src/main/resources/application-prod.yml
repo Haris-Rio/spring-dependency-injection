@@ -1,0 +1,4 @@
+datasource:
+  username: YMLProdUser
+  password: YMLProdPassword
+  jdbcurl: YMLProdurl

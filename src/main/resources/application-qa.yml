@@ -1,0 +1,4 @@
+datasource:
+  username: YMLQAUser
+  password: YMLQAPassword
+  jdbcurl: YMLQAurl

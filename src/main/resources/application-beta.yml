@@ -1,0 +1,4 @@
+datasource:
+  username: YMLBetaUser
+  password: YMLBetaPassword
+  jdbcurl: YMLBetaurl
